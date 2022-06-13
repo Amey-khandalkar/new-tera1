@@ -75,7 +75,7 @@ module "service_account-iam-bindings" {
   mode = "additive"
   bindings = {
     "roles/logging.logWriter" = [
-      "serviceAccount:${[module.gke.service_account]}",
+      "serviceAccount:[module.gke.service_account]",
     ]
   }
 }
