@@ -16,7 +16,7 @@ module "gke" {
   ip_range_pods                     = var.ip_range_pods
   ip_range_services                 = var.ip_range_services
   network_project_id                = var.project_id
-  kubernetes_version                = "1.21.10-gke.2000"
+  kubernetes_version                = "1.21.12-gke.1700"
   http_load_balancing               = false
   regional                          = false
   network_policy                    = false
@@ -65,6 +65,17 @@ module "gke" {
       "https://www.googleapis.com/auth/trace.append",
       "https://www.googleapis.com/auth/devstorage.read_only",
       "https://www.googleapis.com/auth/cloud-platform.read-only",
+    ]
+  }
+}
+
+module "service_account-iam-bindings" {
+  source = "terraform-google-modules/iam/google//modules/service_accounts_iam"
+
+  mode = "additive"
+  bindings = {
+    "roles/logging.logWriter" = [
+      "serviceAccount:${[module.gke.service_account]}",
     ]
   }
 }
