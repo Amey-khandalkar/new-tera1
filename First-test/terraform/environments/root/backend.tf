@@ -1,5 +1,5 @@
 terraform {
   backend "gcs" {
-    bucket = "test1-state"
+    bucket = "state_terraform"
   }
 }
