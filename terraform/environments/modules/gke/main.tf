@@ -69,13 +69,13 @@ module "gke" {
   }
 }
 
-# module "service_account-iam-bindings" {
-#   source = "terraform-google-modules/iam/google//modules/service_accounts_iam"
+module "service_account-iam-bindings" {
+  source = "terraform-google-modules/iam/google//modules/service_accounts_iam"
 
-#   mode = "additive"
-#   bindings = {
-#     "roles/logging.logWriter" = [
-#       "${serviceAccount}:"[module.gke.service_account]
-#     ]
-#   }
-# }
+  mode = "additive"
+  bindings = {
+    "roles/logging.logWriter" = [
+      "${serviceAccount}:"[module.gke.service_account]
+    ]
+  }
+}
