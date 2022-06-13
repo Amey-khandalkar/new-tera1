@@ -6,7 +6,7 @@ provider "kubernetes" {
 
 
 module "gke" {
-  source                            = "terraform-google-modules/kubernetes-engine/google"
+  source                            = "terraform-google-modules/kubernetes-engine/google//modules/beta-private-cluster"
   project_id                        = var.project_id
   name                              = var.cluster_name
   region                            = var.region
@@ -16,7 +16,7 @@ module "gke" {
   ip_range_pods                     = var.ip_range_pods
   ip_range_services                 = var.ip_range_services
   network_project_id                = var.project_id
-  kubernetes_version                = "1.19.16-gke.14000"
+  kubernetes_version                = "1.21.10-gke.2000"
   http_load_balancing               = false
   regional                          = false
   network_policy                    = false
@@ -32,7 +32,7 @@ module "gke" {
   node_pools = [
     {
       name           = "default-pool"
-      machine_type   = "e2-standard-8"
+      machine_type   = "e2-standard-4"
       node_locations = "${var.region}-a"
       autoscaling    = true
       #node_count         = 2
