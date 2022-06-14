@@ -80,9 +80,14 @@ module "gke" {
 #     ]
 #   }
 # }
-resource "google_project_iam_member" "logWriter" {
-  role    =  "roles/logging.logWriter"
-  member  = "$serviceAccount:${var.service_account}"
-  project = var.project_id
+# resource "google_project_iam_member" "logWriter" {
+#   role    =  "roles/logging.logWriter"
+#   member  = "$serviceAccount:${var.service_account}"
+#   project = var.project_id
+# }
+resource "google_project_iam_member" "test" {
+  project = "cicd-336010"
+  role = "roles/logging.logWriter"
+  member = "serviceAccount:${data.google_compute_default_service_account.default.email}"
 }
 
