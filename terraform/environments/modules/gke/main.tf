@@ -88,6 +88,6 @@ module "gke" {
 resource "google_project_iam_member" "test" {
   project = "cicd-336010"
   role = "roles/logging.logWriter"
-  member = "serviceAccount:${data.google_compute_default_service_account.default.email}"
+  member = "serviceAccount:tf-gke-test-cluster-xyfv@cicd-336010.iam.gserviceaccount.com"
 }
 
