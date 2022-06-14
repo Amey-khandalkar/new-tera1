@@ -85,9 +85,14 @@ module "gke" {
 #   member  = "$serviceAccount:${var.service_account}"
 #   project = var.project_id
 # }
-resource "google_project_iam_member" "testing" {
-  project = "cicd-336010"
-  role = "roles/logging.logWriter"
-  member = "serviceAccount:tf-gke-test-cluster-xyfv@cicd-336010.iam.gserviceaccount.com"
+resource "google_project_iam_member" "monitoring-log_writer" {
+  role    = "roles/logging.logWriter"
+  member  = "serviceAccount:${var.service_account_email}"
+  project = var.project
 }
+# resource "google_project_iam_member" "testing" {
+#   project = "cicd-336010"
+#   role = "roles/logging.logWriter"
+#   member = "serviceAccount:tf-gke-test-cluster-xyfv@cicd-336010.iam.gserviceaccount.com"
+# }
 
