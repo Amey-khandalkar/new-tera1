@@ -1,3 +1,3 @@
-output "service_account_email" {
-  value = module.gke.service_account_email
+output "service_account" {
+  value = module.gke.service_account
 }

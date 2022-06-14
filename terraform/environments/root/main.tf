@@ -35,17 +35,17 @@ module "networking" {
 
 module "gke_cluster" {
   source     = "../modules/gke"
+  service_account = "cicd-570@cicd-336010.iam.gserviceaccount.com"
   project_id = var.project_id
   region     = var.region
   zones      = var.zone
-
   cluster_name = var.cluster_name
   #  cluster_name_suffix = var.cluster_name_suffix
   network           = module.networking.network_name
   subnetwork        = module.networking.subnets_names[0]
   ip_range_pods     = module.networking.subnets_secondary_ranges[0][0].range_name
   ip_range_services = module.networking.subnets_secondary_ranges[0][1].range_name
-  service_account_email  =   module.gke_cluster.service_account_email
+  # service_account  =   module.gke_cluster.service_account_email
 }
 
 

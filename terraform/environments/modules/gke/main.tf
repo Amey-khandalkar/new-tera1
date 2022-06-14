@@ -45,7 +45,7 @@ module "gke" {
       local_ssd_count    = "0"
       auto_repair        = true
       auto_upgrade       = true
-      #      service_account    = ""
+      service_account    = var.service_account
       sandbox_enabled             = false
       cpu_manager_policy          = "static"
       cpu_cfs_quota               = true
@@ -84,12 +84,12 @@ module "gke" {
 #   role    =  "roles/logging.logWriter"
 #   member  = "$serviceAccount:${var.service_account}"
 #   project = var.project_id
+# # }
+# resource "google_project_iam_member" "monitoring-log_writer" {
+#   role    = "roles/logging.logWriter"
+#   member  = "serviceAccount:${var.service_account}"
+#   project = "cicd-336010"
 # }
-resource "google_project_iam_member" "monitoring-log_writer" {
-  role    = "roles/logging.logWriter"
-  member  = "serviceAccount:${var.service_account_email}"
-  project = var.project
-}
 # resource "google_project_iam_member" "testing" {
 #   project = "cicd-336010"
 #   role = "roles/logging.logWriter"
