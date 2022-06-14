@@ -49,8 +49,7 @@ module "gke_cluster" {
 module "service" {
   source = "../modules/service_account_iam"
   service_account = module.gke_cluster.service_account
-  
-}
+  }
 
 
 
