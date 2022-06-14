@@ -34,22 +34,19 @@ module "networking" {
 
 
 module "gke_cluster" {
-  source     = "../modules/gke"
-  project_id = var.project_id
-  region     = var.region
-  zones      = var.zone
+  source       = "../modules/gke"
+  project_id   = var.project_id
+  region       = var.region
+  zones        = var.zone
   cluster_name = var.cluster_name
   #  cluster_name_suffix = var.cluster_name_suffix
   network           = module.networking.network_name
   subnetwork        = module.networking.subnets_names[0]
   ip_range_pods     = module.networking.subnets_secondary_ranges[0][0].range_name
   ip_range_services = module.networking.subnets_secondary_ranges[0][1].range_name
-  
+
 }
-module "service" {
-  source = "../modules/service_account_iam"
-  service_account = module.gke_cluster.service_account
-  }
+
 
 
 
