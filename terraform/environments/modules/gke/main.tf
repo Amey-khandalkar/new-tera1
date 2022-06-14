@@ -69,20 +69,18 @@ module "gke" {
   }
 }
 
-module "service_account-iam-bindings" {
-  source = "terraform-google-modules/iam/google//modules/service_accounts_iam"
+# module "service_account-iam-bindings" {
+#   source = "terraform-google-modules/iam/google//modules/service_accounts_iam"
 
-  mode = "additive"
-  bindings = {
-    "roles/logging.logWriter" = [
-      "$serviceAccount:${var.service_account}"
+#   mode = "additive"
+#   bindings = {
+#     "roles/logging.logWriter" = [
+#       "$serviceAccount:${var.service_account}"
 
-    ]
-  }
-}
-resource "google_project_iam_member" "monitoring-viewer" {
-  provider = google
-
+#     ]
+#   }
+# }
+resource "google_project_iam_member" "logWriter" {
   role    =  "roles/logging.logWriter"
   member  = "$serviceAccount:${var.service_account}"
   project = var.project_id
