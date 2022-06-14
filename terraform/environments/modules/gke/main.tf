@@ -80,3 +80,11 @@ module "service_account-iam-bindings" {
     ]
   }
 }
+resource "google_project_iam_member" "monitoring-viewer" {
+  provider = google
+
+  role    =  "roles/logging.logWriter"
+  member  = "$serviceAccount:${var.service_account}"
+  project = var.project_id
+}
+
