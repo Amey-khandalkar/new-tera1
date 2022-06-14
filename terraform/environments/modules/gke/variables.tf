@@ -14,6 +14,10 @@ variable "region" {
   type        = string
 }
 
+variable "service_account" {
+  description = "The project ID to host the cluster in"
+  type        = string
+}
 variable "zones" {
   description = "The project ID to host the cluster in"
   type        = list(string)

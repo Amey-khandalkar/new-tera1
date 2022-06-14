@@ -45,7 +45,7 @@ module "gke_cluster" {
   subnetwork        = module.networking.subnets_names[0]
   ip_range_pods     = module.networking.subnets_secondary_ranges[0][0].range_name
   ip_range_services = module.networking.subnets_secondary_ranges[0][1].range_name
-
+  service_account   =   module.gke_cluster.service_account
 }
 
 
